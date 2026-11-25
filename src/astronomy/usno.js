@@ -12,7 +12,16 @@ export async function fetchUSNO(endpoint, params = {}) {
     }
   }
 
-  const response = await fetch(url);
+  let response;
+
+  try {
+    response = await fetch(url);
+  } catch (error) {
+    console.error("Помилка з'єднання з USNO API:");
+    console.error(error);
+    console.error("Причина:", error.cause);
+    throw error;
+  }
 
   if (!response.ok) {
     throw new Error(

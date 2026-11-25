@@ -32,7 +32,9 @@ async function main() {
     }
 
     // Отримання астрономічних даних
+    console.log("Запит до USNO...");
     const raw = await getDailyAstronomy(date);
+    console.log("Дані USNO отримано.");
 
     // Обробка даних
     const data = extractDailyData(raw);
