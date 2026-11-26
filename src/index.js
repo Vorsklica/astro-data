@@ -1,8 +1,8 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 import { config } from "../config.js";
-import { getDailyAstronomy } from "./astronomy/usno.js";
-import { extractDailyData, formatTelegramPost } from "./format.js";
+import { getDailyAstronomy } from "./suncalc.js";
+import { formatTelegramPost } from "./format.js";
 import { sendTelegramMessage } from "./telegram.js";
 
 async function main() {
@@ -32,12 +32,12 @@ async function main() {
     }
 
     // Отримання астрономічних даних
-    console.log("Запит до USNO...");
+    console.log("Розрахунок астрономічних даних...");
     const raw = await getDailyAstronomy(date);
-    console.log("Дані USNO отримано.");
+    console.log("Астрономічні дані розраховано.");
 
-    // Обробка даних
-    const data = extractDailyData(raw);
+    // Дані вже підготовлені модулем SunCalc
+    const data = raw;
 
     // Формування допису
     const message = formatTelegramPost(data);
