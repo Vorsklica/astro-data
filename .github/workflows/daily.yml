@@ -3,7 +3,7 @@ name: Daily Astronomy Post
 on:
   workflow_dispatch:
   schedule:
-    - cron: "13 6-14/2 * * *"
+    - cron: "13 6 * * *"
       timezone: "Europe/Kyiv"
 
 permissions:
